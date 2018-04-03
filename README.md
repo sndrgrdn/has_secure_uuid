@@ -23,38 +23,38 @@ Or install it yourself as:
 The first step is to generate a migration in order to add the uuid key field.
 
 ```ruby
-rails g migration AddidentifierToUsers identifier:string
+rails g migration AddidentifierToUsers uuid:string
 =>
    invoke  active_record
-   create    db/migrate/20150424010931_add_identifier_to_users.rb
+   create    db/migrate/20150424010931_add_uuid_to_users.rb
 ```
 
 Then run `rake db:migrate` in order to update users table in the database. The next step is to add `has_secure_uuid`
  to the model:
 ```ruby
-# Schema: User(identifier:string, uuid:string)
+# Schema: User(uuid:string, identifier:string)
 class User < ActiveRecord::Base
   has_secure_uuid
 end
 
 user = User.new
 user.save
-user.identifier # => "6c3d256c-aaa7-443a-a16b-75a99ecde277"
-user.regenerate_identifier # => true
+user.uuid # => "6c3d256c-aaa7-443a-a16b-75a99ecde277"
+user.regenerate_uuid # => true
 ```
 
-To use a custom column to store the uuid field you can specify the column_name option. See example above (e.g: uuid):
+To use a custom column to store the uuid field you can specify the column_name option. See example above (e.g: identifier):
 
 ```ruby
-# Schema: User(identifier:string, uuid:string)
+# Schema: User(uuid:string, identifier:string)
 class User < ActiveRecord::Base
-  has_secure_uuid :uuid
+  has_secure_uuid :identifier
 end
 
 user = User.new
 user.save
-user.uuid # => "6c3d256c-aaa7-443a-a16b-75a99ecde277"
-user.regenerate_uuid # => true
+user.identifier # => "6c3d256c-aaa7-443a-a16b-75a99ecde277"
+user.regenerate_identifier # => true
 ```
 
 ## Running tests
