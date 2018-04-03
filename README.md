@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Setting your Model
 
-The first step is to generate a migration in order to add the token key field.
+The first step is to generate a migration in order to add the uuid key field.
 
 ```ruby
 rails g migration AddidentifierToUsers identifier:string

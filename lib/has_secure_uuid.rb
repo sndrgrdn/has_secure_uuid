@@ -26,7 +26,6 @@ module ActiveRecord
       # <tt>validates_uniqueness_of</tt> can. You're encouraged to add a unique index in the database to deal
       # with this even more unlikely scenario.
       def has_secure_uuid(attribute = :identifier)
-        # Load securerandom only when has_secure_token is used.
         define_method("regenerate_#{attribute}") do
           update_attributes attribute => self.class.generate_unique_uuid
         end
